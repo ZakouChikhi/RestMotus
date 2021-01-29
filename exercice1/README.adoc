@@ -1,0 +1,31 @@
+= TP1 - exercice 1
+
+
+== Objectifs
+
+
+- Découvrir le requêtage d'un service Rest déployé
+- Construire les différents types de requêtes Http et le passage d'informations
+
+
+
+
+== Enoncé
+
+
+
+Un web-service est en fonction à l'adresse https://pdicost.univ-orleans.fr/.m1ws/enjoy/
+
+Veuillez suivre les étapes suivantes en utilisant le client Rest proposé par IntellIJ :
+
+. Créez une requête POST sur l'URI pdicost.univ-orleans.fr/.m1ws/enjoy/student en passant en paramètre encodé votre numéro d'étudiant ;
+. Vous pouvez alors consulter soit en JSON soit en XML votre objet en requêtant en GET l'URI pdicost.univ-orleans.fr/.m1ws/enjoy/student/VOTRENUMERO ;
+. Vous constatez que ni votre adresse ni votre nom n'est connu dans le SI. Mettez les à jour en envoyant en méthode PUT sur l'URI pdicost.univ-orleans.fr/.m1ws/enjoy/student/VOTRENUMERO/identity. Attention on attend ici du XML et un objet de la classe IdentityData (voir le diagramme de classes à la fin de cet exercice) ;
+. Vérifiez que votre identité a bien été mise à jour ;
+. Mettez à jour votre adresse complète en PATCH à l'URI pdicost.univ-orleans.fr/.m1ws/enjoy/student/VOTRENUMERO/location. Cette fois ci, nous attendons du Json et un objet de la classe LocationData (voir le diagramme de classes à la fin de l'exercice) ; Malheureusement, le développeur de la méthode PATCH a mal codé la méthode, et on ne peut mettre à jour qu'un seul champ à chaque appel !
+. Vérifiez que toutes vos données sont bien mises à jour ;
+. Récupérez maintenant votre token en GET à l'URI pdicost.univ-orleans.fr/.m1ws/enjoy/student/VOTRENUMERO/token. Si tout va bien vous devez voir apparaître dans le message de retour votre token ;
+. Envoyez en POST à l'URI pdicost.univ-orleans.fr/.m1ws/enjoy/student/VOTRENUMERO/token avec votre token. Si tout va bien, le message de retour vous confirmera la réussite de votre enregistrement.
+. Bravo, vous maîtrisez les requêtes.
+
+

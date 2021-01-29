@@ -1,0 +1,74 @@
+= TP1 - exercice 2
+
+
+== Objectifs
+
+
+- Analyser une contrôleur REST
+- Identifier les différentes URI et leurs paramètres
+- Utiliser l'API avec le client REST d'IntellIJ
+- Ecrire un proxy permettant de requêter le web-service
+- Ecrire un client Java
+
+
+== Enoncé
+
+Vous avez les sources d'un service Web permettant de jouer à motus.
+Ce web-service permet :
+
+* De créer un utilisateur (un ticket d'authentification est retourné)
+* Pour un utilisateur, de créer une partie (en utilisant son ticket d'authentification) : un ticket de partie est retourné
+
+* Pour un utilisateur, de proposer un mot dans une partie (en utilisant son ticket de partie et en proposant un mot). Le verdict est retourné
+
+* Pour un utilisateur, de récupérer les propositions faites pour une partie donnée (en utilisant son ticket partie)
+
+
+
+=== Travail demandé :
+
+. Dresser le tableau des URI pour bien comprendre le web-service
+. Jouer un scénario en utilisant le client REST :
+.. L'utilisateur crée un compte
+.. L'utilisateur crée une partie
+.. L'utilisateur joue cette partie en consultant parfois les propositions faites auparavant. A chaque coup joué, le joueur reçoit le verdict des lettres bien placées, mal-placées ainsi que le nombre de tentatives restantes
+. Une fois les requêtes maîtrisées, écrire un proxy (le projet existe déja sous le nom de *motusclient*) qui implémentera l'interface suivante :
+
+[source,java]
+----
+public interface MotusProxy {
+
+    String creerUnCompte(String pseudo) throws PseudoDejaPrisException;
+    String creerUnePartie(String tokenAuthentification);
+    EtatPartie proposerMot(String tokenPartie, String proposition) throws MotInexistantException, MaxNbCoupsException, TicketInvalideException;
+    List<String> getPropositions(String tokenPartie) throws TicketInvalideException, PartieInexistanteException;
+}
+----
+
+Le but du proxy est de connecter une application à un web-service.
+Le proxy subit un appel de fonction, il traduit cet appel en une requete Http et l'envoie au web-service. Le Web-service lui répond.
+Le proxy traite l'information en retour et :
+
+* Lève une exception si un code erreur est retourné
+* Reconstruit un objet métier souhaité (exemple : EtatPartie)
+
+
+[start=4]
+. Le programme suivant doit être exécutable :
+
+[source, java]
+----
+public class Main {
+    public static void main(String[] args) throws PseudoDejaPrisException, TicketInvalideException, PartieInexistanteException, MaxNbCoupsException, MotInexistantException {
+        MotusProxy motusProxy = new MotusProxyImpl();
+        String tokenAuthentification = motusProxy.creerUnCompte("Yohan");
+        String tokenPartie = motusProxy.creerUnePartie(tokenAuthentification);
+        List<String> tentatives = motusProxy.getPropositions(tokenPartie);
+        EtatPartie etat = motusProxy.proposerMot(tokenPartie,"acheter");
+        tentatives = motusProxy.getPropositions(tokenPartie);
+    }
+}
+----
+
+. Au delà de ce petit programme, faites une belle petite application MVC vous permettant
+de jouer plusieurs scénarios. Dans ce MVC, vous l'aurez compris, le M = MotusProxy
