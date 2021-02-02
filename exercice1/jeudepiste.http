@@ -1,0 +1,57 @@
+GET https://pdicost.univ-orleans.fr/.m1ws/enjoy/
+
+
+
+###
+POST  https://pdicost.univ-orleans.fr/.m1ws/enjoy/student/
+content-Type: application/x-www-form-urlencoded
+
+numeroEtudiant=o2175503
+
+###
+GET https://pdicost.univ-orleans.fr/.m1ws/enjoy/student/o2175503
+
+### Mis à jour de l'identité
+PUT https://pdicost.univ-orleans.fr/.m1ws/enjoy/student/o2175503/identity
+content-Type: application/xml
+
+<IdentityData>
+<numeroEtudiant>o2175503</numeroEtudiant>
+<nom>Chikhi</nom>
+<prenom>Zakaria</prenom>
+</IdentityData>
+
+###
+GET https://pdicost.univ-orleans.fr/.m1ws/enjoy/student/o2175503
+
+
+### Mis à jour de la location
+PATCH https://pdicost.univ-orleans.fr/.m1ws/enjoy/student/o2175503/location
+content-Type: application/json
+
+{
+  "adresse": "avenue des champs"
+}
+
+###
+PATCH https://pdicost.univ-orleans.fr/.m1ws/enjoy/student/o2175503/location
+content-Type: application/json
+
+{
+  "codePostal": 45000
+}
+
+###
+PATCH https://pdicost.univ-orleans.fr/.m1ws/enjoy/student/o2175503/location
+content-Type: application/json
+
+{
+  "ville": "Orléans"
+}
+
+###
+GET https://pdicost.univ-orleans.fr/.m1ws/enjoy/student/o2175503/token
+
+###
+POST https://pdicost.univ-orleans.fr/.m1ws/enjoy/student/o2175503/token
+token: T3Jsw6lhbnNhdmVudWUgZGVzIGNoYW1wczQ1MDAwQ2hpa2hpWmFrYXJpYW8yMTc1NTAz
