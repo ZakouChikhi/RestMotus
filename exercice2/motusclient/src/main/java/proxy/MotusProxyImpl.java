@@ -26,16 +26,15 @@ public class MotusProxyImpl implements MotusProxy{
 
 
         HttpRequest request = HttpRequest.newBuilder() 
-                .uri(URI.create(HOST+"/joueur")) 
-                .header("Content-type","application/x-www-form-urlencoded") 
-                .POST(HttpRequest.BodyPublishers.ofString("pseudo="+pseudo)) 
+                .uri(URI.create(HOST+"/joueur?pseudo="+pseudo))
+                .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
 
    
         try {
-            HttpResponse<String> response = httpClient.send(request,
+            HttpResponse response = httpClient.send(request,
                     HttpResponse.BodyHandlers.ofString());
-         // String token=  response.headers().firstValue("token").get();
+         return response.headers().firstValue("token").get();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
