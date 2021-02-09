@@ -1,14 +1,21 @@
 package proxy;
 
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import exceptions.*;
 import proxy.dto.EtatPartie;
 
+import java.io.IOException;
+import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.List;
+
 
 public class MotusProxyImpl implements MotusProxy{
 
+    private static final String HOST = "http://localhost:8080/motus";
     private HttpClient httpClient = HttpClient.newHttpClient();
 
     private ObjectMapper objectMapper = new ObjectMapper();
@@ -16,6 +23,25 @@ public class MotusProxyImpl implements MotusProxy{
 
     @Override
     public String creerUnCompte(String pseudo) throws PseudoDejaPrisException {
+
+
+        HttpRequest request = HttpRequest.newBuilder() 
+                .uri(URI.create(HOST+"/joueur")) 
+                .header("Content-type","application/x-www-form-urlencoded") 
+                .POST(HttpRequest.BodyPublishers.ofString("pseudo="+pseudo)) 
+                .build();
+
+   
+        try {
+            HttpResponse<String> response = httpClient.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+         // String token=  response.headers().firstValue("token").get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 

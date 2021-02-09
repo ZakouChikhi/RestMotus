@@ -1,0 +1,7 @@
+POST http://localhost:8080/motus/joueur?pseudo=zakaria
+
+
+
+###
+POST http://localhost:8080/motus/partie
+token: YXC+TT/pEcnOjHIRKjlwpVv2g8yOE9QPXg9yGh5UvCCQ9KT1LpfRj/oFkMXYMQdt3AfHf7t0fKQzpYNtH7l1JA==
