@@ -5,3 +5,12 @@ POST http://localhost:8080/motus/joueur?pseudo=zakaria
 ###
 POST http://localhost:8080/motus/partie
 token: YXC+TT/pEcnOjHIRKjlwpVv2g8yOE9QPXg9yGh5UvCCQ9KT1LpfRj/oFkMXYMQdt3AfHf7t0fKQzpYNtH7l1JA==
+
+###
+PUT http://localhost:8080/motus/partie?proposition=chemise
+tokenPartie: oYzEbQ5YSVUFhXqjLJG/kwa1INF/51qDy8ad79SDlK9jbqipwL03KBo6qJ6KdZh8fhZLWFtUQwFcr7E2Rv9H80FrSBFKfIGilcNTtxc46Nc=
+
+
+###
+GET http://localhost:8080/motus/partie
+tokenPartie: oYzEbQ5YSVUFhXqjLJG/kwa1INF/51qDy8ad79SDlK9jbqipwL03KBo6qJ6KdZh8fhZLWFtUQwFcr7E2Rv9H80FrSBFKfIGilcNTtxc46Nc=

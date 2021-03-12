@@ -8,7 +8,7 @@ import java.util.List;
 public class Main {
 
 
-    public static void main(String[] args) throws PseudoDejaPrisException, TicketInvalideException, PartieInexistanteException, MaxNbCoupsException, MotInexistantException {
+    public static void main(String[] args) throws PseudoDejaPrisException, TicketInvalideException, PartieInexistanteException, MaxNbCoupsException, MotInexistantException, ConnexionServeurException, CodeErreurInnatendu, JoueurNonValideException, IdentiteInvalide {
         MotusProxy motusProxy = new MotusProxyImpl();
         String tokenAuthentification = motusProxy.creerUnCompte("Yohan");
         String tokenPartie = motusProxy.creerUnePartie(tokenAuthentification);
